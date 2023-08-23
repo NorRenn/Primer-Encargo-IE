@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+<style>
+  body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+</style>
+</head>
+<body>
+<script>
+let angle1 = 0;
+let angle2 = 0;
+
+function setup() {
+  createCanvas(400, 400);
+  angleMode(DEGREES);
+  noFill();
+  strokeWeight(2);
+}
+
+function draw() {
+  background(240);
+
+  // Circunferencia 2 (centro de rotación)
+  stroke(0, 200, 200); // Color celeste
+  ellipse(width / 2, height / 2 + 60, 10); // Radio 5
+
+  // Coordenadas del círculo giratorio (Circunferencia 1)
+  let centerX1 = width / 2;
+  let centerY1 = height / 2 - 70; // Desplazado hacia abajo
+  let radiusCenter1 = 5; // Radio 5 para la Circunferencia 2
+
+  // Coordenadas del círculo que gira (Circunferencia 1)
+  let radiusCircle1 = 100;
+  let circleX1 = centerX1 + radiusCircle1 * cos(angle1);
+  let circleY1 = centerY1 + radiusCircle1 * sin(angle1);
+
+  // Dibuja la Circunferencia 1 (círculo cian)
+  stroke(0, 255, 255); // Color cian
+  ellipse(circleX1, circleY1, 100);
+
+  // Dibuja la Circunferencia 2 (centro de rotación)
+  stroke(0, 200, 200); // Color celeste
+  ellipse(centerX1, centerY1, 10); // Radio 5
+
+  // Coordenadas del círculo giratorio (Circunferencia 3, alrededor de Circunferencia 1)
+  let circleX2 = circleX1 + radiusCircle1 * cos(angle2 * 2); // Rotación más rápida
+  let circleY2 = circleY1 + radiusCircle1 * sin(angle2 * 2); // Rotación más rápida
+
+  // Dibuja la Circunferencia 3 (círculo naranja)
+  stroke(255, 165, 0); // Color naranja
+  ellipse(circleX2, circleY2, 30);
+
+  // Incrementa los ángulos para las rotaciones
+  angle1 += 2;
+  angle2 += 1;
+}
+</script>
+</body>
+</html>
+
